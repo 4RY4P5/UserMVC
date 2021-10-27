@@ -1,0 +1,102 @@
+﻿@model UserMVC.ViewModel.UserDepartment
+
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+       <form asp-action="Save">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row justify-content-lg-start">
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            @Html.LabelFor(m => m.userdetail.Name)
+                        </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input asp-for="userdetail.Name" class="form-control" />
+                            <span asp-validation-for="userdetail.Name" class="text-danger"></span>
+                        </div>
+                        </div>
+                    </div>
+                <div class="row justify-content-lg-start">
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            @Html.LabelFor(m => m.userdetail.Password)
+                        </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input asp-for="userdetail.Password" class="form-control" />
+                            <span asp-validation-for="userdetail.Password" class="text-danger"></span>
+                        </div>
+                        </div>
+                    </div>
+                <div class="row justify-content-lg-start">
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            @Html.LabelFor(m => m.userdetail.Email)
+                        </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input asp-for="userdetail.Email" class="form-control" type="email" />
+                            <span asp-validation-for="userdetail.Email" class="text-danger"></span>
+                        </div>
+                        </div>
+                    </div>
+                <div class="row justify-content-lg-start">
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            @Html.LabelFor(m => m.userdetail.Department)
+                        </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            @Html.DropDownListFor(m => m.userdetail.Department, new SelectList(Model.Departments, "Name", "Name"), "", new { @class = "form-control" })
+                            <span asp-validation-for="userdetail.Department" class="text-danger"></span>
+                        </div>
+                        </div>
+                    </div>
+                <div class="row justify-content-lg-start">
+                    <div class="col-md-2">
+                        <div class="form-check">
+                            @Html.LabelFor(m => m.userdetail.Address)
+                        </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <textarea asp-for="userdetail.Address" class="form-control"></textarea>
+                            <span asp-validation-for="userdetail.Address" class="text-danger"></span>
+                        </div>
+                        </div>
+                    </div>
+                <div class="row justify-content-lg-start">
+                    <div class="col-md-3">
+                        <div class="form-check">
+                            @Html.LabelFor(model => model.userdetail.Admin)
+                        </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" asp-for="userdetail.Admin" />
+                        </div>
+                        </div>
+                    </div>
+                <input type="hidden" asp-for="userdetail.Id" />
+                    @Html.AntiForgeryToken()
+                    <div class="row justify-content-lg-start">
+                        <div class="col-md-1">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                        <div class="col-md-1">
+                            <a asp-action="Index"><input type="button" class="btn btn-primary" value="Cancel" /></a>
+                        </div>
+                    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

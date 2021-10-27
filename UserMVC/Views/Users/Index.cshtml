@@ -1,0 +1,56 @@
+﻿@model IEnumerable<UserMVC.Models.Entities.UserDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create"><input type="button" class="btn btn-primary" value="Add User" /></a>
+</p>
+<div class="row justify-content-lg-start">
+    <div class="col-md-2">
+        Name
+    </div>
+    <div class="col-md-2">
+        Email
+    </div>
+    <div class="col-md-2">
+        Department
+    </div>
+    <div class="col-md-2">
+        Address
+    </div>
+    <div class="col-md-1">
+        Admin
+    </div>
+</div>
+<br />
+@foreach (var item in Model)
+{
+    <div class="row justify-content-lg-start">
+        <div class="col-md-2">
+            @Html.DisplayFor(m => item.Name)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(m => item.Email)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(m => item.Department)
+        </div>
+        <div class="col-md-2">
+            @Html.DisplayFor(m => item.Address)
+        </div>
+        <div class="col-md-1">
+            @Html.DisplayFor(m => item.Admin)
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Edit" asp-route-id="@item.Id"><input type="button" class="btn btn-primary" value="Edit" /></a>
+            <form asp-action="Delete" asp-route-id="@item.Id">
+                <input type="submit" class="btn btn-primary" value="Delete" onclick="return confirm('Are you sure you want to delete user : @item.Name')" />
+            </form>
+        </div>
+    </div>
+}
+
